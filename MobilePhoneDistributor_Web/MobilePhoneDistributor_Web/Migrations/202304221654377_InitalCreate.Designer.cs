@@ -7,13 +7,13 @@ namespace MobilePhoneDistributor_Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddReceipt_PhoneModel : IMigrationMetadata
+    public sealed partial class InitalCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddReceipt_PhoneModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitalCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202304220852300_AddReceipt_PhoneModel"; }
+            get { return "202304221654377_InitalCreate"; }
         }
         
         string IMigrationMetadata.Source

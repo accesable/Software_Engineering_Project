@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -25,18 +26,21 @@ namespace MobilePhoneDistributor_Web.Models
         public string ReceiptDetailId { get; set; }
         [Required]
         public string ReceiptId { get; set; }
-        [Required]
-        public string PhoneModelId { set; get; }
+        public Receipt Receipt { get; set; }
+
         [Required]
         public int Quantity { get; set; }
+        [Required]
+        [ForeignKey("PhoneModel")]
+        public string PhoneModelId { get; set; }
+        public PhoneModel PhoneModel { get; set; }
         [StringLength(50)]
         [Required]
         public string UnitAmmount { set; get; }
 
+        
+        
 
-        public Receipt Receipt { get; set; }
-
-        public PhoneModel PhoneModel { get; set; }
 
 
     }

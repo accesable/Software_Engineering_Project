@@ -252,30 +252,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\PasswordHasher.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReceiptDetailsController.cs" />
     <Compile Include="Controllers\ReceiptsController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202304220300493_InitalCreate.cs" />
-    <Compile Include="Migrations\202304220300493_InitalCreate.designer.cs">
-      <DependentUpon>202304220300493_InitalCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202304220432392_AlterStaffs.cs" />
-    <Compile Include="Migrations\202304220432392_AlterStaffs.designer.cs">
-      <DependentUpon>202304220432392_AlterStaffs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202304220612530_UniqueUsername.cs" />
-    <Compile Include="Migrations\202304220612530_UniqueUsername.designer.cs">
-      <DependentUpon>202304220612530_UniqueUsername.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202304220852300_AddReceipt_PhoneModel.cs" />
-    <Compile Include="Migrations\202304220852300_AddReceipt_PhoneModel.designer.cs">
-      <DependentUpon>202304220852300_AddReceipt_PhoneModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202304220913410_AddReceipt_PhoneModel1.cs" />
-    <Compile Include="Migrations\202304220913410_AddReceipt_PhoneModel1.designer.cs">
-      <DependentUpon>202304220913410_AddReceipt_PhoneModel1.cs</DependentUpon>
+    <Compile Include="Migrations\202304221654377_InitalCreate.cs" />
+    <Compile Include="Migrations\202304221654377_InitalCreate.designer.cs">
+      <DependentUpon>202304221654377_InitalCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
@@ -349,6 +334,11 @@
     <Content Include="Views\Receipts\Details.cshtml" />
     <Content Include="Views\Receipts\Edit.cshtml" />
     <Content Include="Views\Receipts\Index.cshtml" />
+    <Content Include="Views\ReceiptDetails\Create.cshtml" />
+    <Content Include="Views\ReceiptDetails\Delete.cshtml" />
+    <Content Include="Views\ReceiptDetails\Details.cshtml" />
+    <Content Include="Views\ReceiptDetails\Edit.cshtml" />
+    <Content Include="Views\ReceiptDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -381,20 +371,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304220300493_InitalCreate.resx">
-      <DependentUpon>202304220300493_InitalCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202304220432392_AlterStaffs.resx">
-      <DependentUpon>202304220432392_AlterStaffs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202304220612530_UniqueUsername.resx">
-      <DependentUpon>202304220612530_UniqueUsername.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202304220852300_AddReceipt_PhoneModel.resx">
-      <DependentUpon>202304220852300_AddReceipt_PhoneModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202304220913410_AddReceipt_PhoneModel1.resx">
-      <DependentUpon>202304220913410_AddReceipt_PhoneModel1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202304221654377_InitalCreate.resx">
+      <DependentUpon>202304221654377_InitalCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

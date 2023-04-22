@@ -1,0 +1,50 @@
+﻿@model MobilePhoneDistributor_Web.Models.ReceiptDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReceiptDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Receipt.StaffId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Receipt.StaffId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhonneModelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhonneModelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitAmmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitAmmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReceiptDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -81,10 +81,6 @@ C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Mobil
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.csproj.CopyComplete
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.dll
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.pdb
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.InitalCreate.resources
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.csproj.GenerateResource.cache
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AlterStaffs.resources
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.UniqueUsername.resources
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\Microsoft.AspNetCore.Authentication.Abstractions.dll
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\Microsoft.AspNetCore.Authentication.Cookies.dll
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\Microsoft.AspNetCore.Authentication.Core.dll
@@ -157,5 +153,5 @@ C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Mobil
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Numerics.Vectors.xml
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Text.Encodings.Web.xml
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AddReceipt_PhoneModel.resources
-C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AddReceipt_PhoneModel1.resources
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.InitalCreate.resources
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.csproj.GenerateResource.cache

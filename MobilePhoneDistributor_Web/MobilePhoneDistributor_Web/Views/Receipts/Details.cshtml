@@ -1,5 +1,4 @@
 ﻿@model MobilePhoneDistributor_Web.Models.Receipt
-
 @{
     ViewBag.Title = "Details";
 }
@@ -10,12 +9,10 @@
     <h4>Receipt</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Staff.FirstName)
-        </dt>
+        
 
         <dd>
-            @Html.DisplayFor(model => model.Staff.FirstName)
+            @Html.DisplayFor(model => model.Staff.StaffId)
         </dd>
 
         <dt>
@@ -27,6 +24,45 @@
         </dd>
 
     </dl>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDetails.First().ReceiptId)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDetails.First().Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDetails.First().UnitAmmount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.ReceiptDetails)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(ModelItem =>item.ReceiptId)
+                </th>
+               
+                <th>
+                    @Html.DisplayFor(ModelItem => item.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayFor(ModelItem => item.UnitAmmount)
+                </th>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReceiptId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ReceiptId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReceiptId })
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ReceiptId }) |

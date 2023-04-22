@@ -12,8 +12,8 @@ namespace MobilePhoneDistributor_Web.Models
 
         public virtual DbSet<Staff> Staffs { get; set;}
 
-        public virtual DbSet<PhoneModel> Users { get; set;}
+        public virtual DbSet<PhoneModel> PhoneModels { get; set;}
         public virtual DbSet<Receipt> Receipts { get; set;}
-        public virtual DbSet<ReceiptDetail> ReceiptsDetail { get; set;}
+        public virtual DbSet<ReceiptDetail> ReceiptsDetail { get; set; }
     }
 }

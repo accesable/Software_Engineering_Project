@@ -11,113 +11,112 @@ using MobilePhoneDistributor_Web.Models;
 
 namespace MobilePhoneDistributor_Web.Controllers
 {
-    public class ReceiptsController : Controller
+    public class ReceiptDetailsController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: Receipts
+        // GET: ReceiptDetails
         public async Task<ActionResult> Index()
         {
-            var receipts = db.Receipts.Include(r => r.Staff);
-            return View(await receipts.ToListAsync());
+            var receiptsDetail = db.ReceiptsDetail.Include(r => r.Receipt);
+            return View(await receiptsDetail.ToListAsync());
         }
 
-        // GET: Receipts/Details/5
+        // GET: ReceiptDetails/Details/5
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Receipt receipt = await db.Receipts.FindAsync(id);
-            receipt.ReceiptDetails=db.ReceiptsDetail.Where(x=>x.ReceiptId==receipt.ReceiptId).ToList();
-            if (receipt == null)
+            ReceiptDetail receiptDetail = await db.ReceiptsDetail.FindAsync(id);
+            if (receiptDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(receipt);
+            return View(receiptDetail);
         }
 
-        // GET: Receipts/Create
+        // GET: ReceiptDetails/Create
         public ActionResult Create()
         {
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName");
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId");
             return View();
         }
 
-        // POST: Receipts/Create
+        // POST: ReceiptDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ReceiptId,ReceiptDate,StaffId")] Receipt receipt)
+        public async Task<ActionResult> Create([Bind(Include = "ReceiptDetailId,ReceiptId,Quantity,PhonneModelId,UnitAmmount")] ReceiptDetail receiptDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Receipts.Add(receipt);
+                db.ReceiptsDetail.Add(receiptDetail);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName", receipt.StaffId);
-            return View(receipt);
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId", receiptDetail.ReceiptId);
+            return View(receiptDetail);
         }
 
-        // GET: Receipts/Edit/5
+        // GET: ReceiptDetails/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Receipt receipt = await db.Receipts.FindAsync(id);
-            if (receipt == null)
+            ReceiptDetail receiptDetail = await db.ReceiptsDetail.FindAsync(id);
+            if (receiptDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName", receipt.StaffId);
-            return View(receipt);
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId", receiptDetail.ReceiptId);
+            return View(receiptDetail);
         }
 
-        // POST: Receipts/Edit/5
+        // POST: ReceiptDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ReceiptId,ReceiptDate,StaffId")] Receipt receipt)
+        public async Task<ActionResult> Edit([Bind(Include = "ReceiptDetailId,ReceiptId,Quantity,PhonneModelId,UnitAmmount")] ReceiptDetail receiptDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(receipt).State = EntityState.Modified;
+                db.Entry(receiptDetail).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName", receipt.StaffId);
-            return View(receipt);
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId", receiptDetail.ReceiptId);
+            return View(receiptDetail);
         }
 
-        // GET: Receipts/Delete/5
+        // GET: ReceiptDetails/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Receipt receipt = await db.Receipts.FindAsync(id);
-            if (receipt == null)
+            ReceiptDetail receiptDetail = await db.ReceiptsDetail.FindAsync(id);
+            if (receiptDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(receipt);
+            return View(receiptDetail);
         }
 
-        // POST: Receipts/Delete/5
+        // POST: ReceiptDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            Receipt receipt = await db.Receipts.FindAsync(id);
-            db.Receipts.Remove(receipt);
+            ReceiptDetail receiptDetail = await db.ReceiptsDetail.FindAsync(id);
+            db.ReceiptsDetail.Remove(receiptDetail);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
