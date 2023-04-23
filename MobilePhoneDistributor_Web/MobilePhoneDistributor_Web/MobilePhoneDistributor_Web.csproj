@@ -252,15 +252,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\PasswordHasher.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhoneModelsController.cs" />
     <Compile Include="Controllers\ReceiptDetailsController.cs" />
     <Compile Include="Controllers\ReceiptsController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202304221654377_InitalCreate.cs" />
-    <Compile Include="Migrations\202304221654377_InitalCreate.designer.cs">
-      <DependentUpon>202304221654377_InitalCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202304230844277_ThirdReCreateDatabase.cs" />
+    <Compile Include="Migrations\202304230844277_ThirdReCreateDatabase.designer.cs">
+      <DependentUpon>202304230844277_ThirdReCreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
@@ -329,16 +330,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Staffs\Logout.cshtml" />
     <Content Include="Views\Staffs\Register.cshtml" />
-    <Content Include="Views\Receipts\Create.cshtml" />
     <Content Include="Views\Receipts\Delete.cshtml" />
     <Content Include="Views\Receipts\Details.cshtml" />
     <Content Include="Views\Receipts\Edit.cshtml" />
     <Content Include="Views\Receipts\Index.cshtml" />
+    <Content Include="Views\Receipts\Create.cshtml" />
+    <Content Include="Views\Receipts\AppendDetail.cshtml" />
     <Content Include="Views\ReceiptDetails\Create.cshtml" />
     <Content Include="Views\ReceiptDetails\Delete.cshtml" />
     <Content Include="Views\ReceiptDetails\Details.cshtml" />
     <Content Include="Views\ReceiptDetails\Edit.cshtml" />
     <Content Include="Views\ReceiptDetails\Index.cshtml" />
+    <Content Include="Views\PhoneModels\Create.cshtml" />
+    <Content Include="Views\PhoneModels\Delete.cshtml" />
+    <Content Include="Views\PhoneModels\Details.cshtml" />
+    <Content Include="Views\PhoneModels\Edit.cshtml" />
+    <Content Include="Views\PhoneModels\Index.cshtml" />
+    <Content Include="Views\ReceiptDetails\AppendDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,8 +379,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304221654377_InitalCreate.resx">
-      <DependentUpon>202304221654377_InitalCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202304230844277_ThirdReCreateDatabase.resx">
+      <DependentUpon>202304230844277_ThirdReCreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

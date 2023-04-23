@@ -9,7 +9,7 @@
     {
         public Configuration()
         {
-            //AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MobilePhoneDistributor_Web.Models.ModelDbContext context)

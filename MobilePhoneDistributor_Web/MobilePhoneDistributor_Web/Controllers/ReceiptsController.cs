@@ -41,7 +41,7 @@ namespace MobilePhoneDistributor_Web.Controllers
         // GET: Receipts/Create
         public ActionResult Create()
         {
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName");
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "StaffId");
             return View();
         }
 
@@ -50,19 +50,59 @@ namespace MobilePhoneDistributor_Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ReceiptId,ReceiptDate,StaffId")] Receipt receipt)
+        public async Task<ActionResult> Create(ReceiptCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Receipts.Add(receipt);
+                Receipt latestReceipt = (from i in db.Receipts orderby i.ReceiptId descending select i)?.FirstOrDefault();
+               
+                Receipt AddedReceipt=new Receipt()
+                {
+                    ReceiptId=General.GenerateReceiptId(latestReceipt),
+                    ReceiptDate=DateTime.Now,
+                    StaffId=model.StaffId,
+              
+                };
+                db.Receipts.Add(AddedReceipt);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName", receipt.StaffId);
-            return View(receipt);
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "StaffId");
+            return View();
         }
+        [HttpGet]
+        public ActionResult AppendDetail(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Receipt receipt = db.Receipts.Find(id);
+            ViewBag.PhoneModel = new SelectList(db.PhoneModels.ToList(), "PhoneId", "PhoneName",receipt.ReceiptDetails);
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AppendDetail( string id,ReceiptDetailCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Receipt latestReceipt = (from i in db.Receipts orderby i.ReceiptId descending select i)?.FirstOrDefault();
 
+                ReceiptDetail AddedReceipt = new ReceiptDetail()
+                {
+                   ReceiptId=id,
+                   PhoneModelId=model.PhoneModelId,
+                   UnitAmmount=model.UnitAmmount,
+                   Quantity=model.Quantity,
+                };
+                db.ReceiptsDetail.Add(AddedReceipt);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.PhoneModel = new SelectList(db.PhoneModels.ToList(), "PhoneId", "PhoneName");
+            return View();
+        }
         // GET: Receipts/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -75,7 +115,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName", receipt.StaffId);
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "StaffId", receipt.StaffId);
             return View(receipt);
         }
 

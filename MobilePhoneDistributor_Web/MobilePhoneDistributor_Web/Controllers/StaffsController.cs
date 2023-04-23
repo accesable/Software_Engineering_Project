@@ -86,7 +86,8 @@ namespace MobilePhoneDistributor_Web.Controllers
             if (ModelState.IsValid)
             {
                 string[] StoredPassword = PasswordHasher.CreatePassword(model.Password);
-                string LastStaff = db.Staffs.ToList().LastOrDefault().StaffId;
+                string LastStaff = db.Staffs.OrderByDescending(s => s.StaffId).FirstOrDefault()?.StaffId;
+                Console.WriteLine(LastStaff);
                 Staff AddedStaff= new Staff() {
                     FirstName = model.FirstName,
                     LastName = model.LastName,

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MobilePhoneDistributor_Web.Models.Receipt>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Receipt";
 }
 
-<h2>Index</h2>
+<h2>Receipts List </h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.ReceiptDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReceiptId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReceiptId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReceiptId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ReceiptId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ReceiptId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ReceiptId })|
         </td>
     </tr>
 }

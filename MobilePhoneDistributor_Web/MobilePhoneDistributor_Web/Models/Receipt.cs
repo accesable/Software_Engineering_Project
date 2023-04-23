@@ -20,10 +20,20 @@ namespace MobilePhoneDistributor_Web.Models
 
         public virtual ICollection<ReceiptDetail> ReceiptDetails { get; set; }
     }
+    [NotMapped]
+    public class ReceiptCreateViewModel
+    {
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MMddyy}", ApplyFormatInEditMode = true)]
+        public DateTime ReceiptDate { get; set; } = DateTime.Now;
+        [Required]
+        public string StaffId { get; set; }
+    }
     public class ReceiptDetail
     {
         [Key]
-        public string ReceiptDetailId { get; set; }
+        public int ReceiptDetailId { get; set; }
         [Required]
         public string ReceiptId { get; set; }
         public Receipt Receipt { get; set; }
@@ -38,10 +48,16 @@ namespace MobilePhoneDistributor_Web.Models
         [Required]
         public string UnitAmmount { set; get; }
 
-        
-        
-
-
-
+    }
+    [NotMapped]
+    public class ReceiptDetailCreateViewModel
+    {
+        [Required]
+        public string PhoneModelId { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string UnitAmmount { get; set; }
     }
 }

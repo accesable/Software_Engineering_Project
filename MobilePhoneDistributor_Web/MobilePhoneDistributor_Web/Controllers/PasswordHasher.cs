@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobilePhoneDistributor_Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -60,13 +61,13 @@ namespace MobilePhoneDistributor_Web.Controllers
             }
         }
     }
-    internal class General
+    public class General
     {
         public static string GenerateStaffID(string LastesId)
         {
             if (LastesId  == null)
             {
-                return null;
+                return "S0001";
             }
             int order = Int32.Parse(LastesId.Substring(1));
             if(order <10 ) {
@@ -81,6 +82,46 @@ namespace MobilePhoneDistributor_Web.Controllers
             else if (order < 10000)
             {
                 return "S" + (order + 1);
+            }
+            return "S10001";
+        }
+        public static string GenerateReceiptId(Receipt lastestReceipt)
+        {
+            string reVal = "";
+            if (lastestReceipt == null) {
+                string Order = "R000";
+
+                reVal += DateTime.Now.Date.ToString("MMddyy");
+                reVal += Order;
+                return reVal;
+            }
+            DateTime lastest = lastestReceipt.ReceiptDate;
+            string ID = lastestReceipt.ReceiptId;
+            if (lastest.Date < DateTime.Now.Date)
+            {
+                string Order = "R000";
+
+                reVal += DateTime.Now.Date.ToString("MMddyy");
+                reVal += Order;
+                return reVal;
+
+            }
+            else if (lastest.Date == DateTime.Now.Date)
+            {
+                int order = Convert.ToInt32(ID.Substring(7, ID.Length - 7));
+                order += 1;
+                if (order < 10)
+                {
+                    return String.Format("{0}R{1}", DateTime.Now.Date.ToString("MMddyy"), "00" + order);
+                }
+                else if (order < 100)
+                {
+                    return String.Format("{0}R{1}", DateTime.Now.Date.ToString("MMddyy"), "0" + order);
+                }
+                else
+                {
+                    return String.Format("{0}R{1}", DateTime.Now.Date.ToString("MMddyy"), order);
+                }
             }
             return null;
         }

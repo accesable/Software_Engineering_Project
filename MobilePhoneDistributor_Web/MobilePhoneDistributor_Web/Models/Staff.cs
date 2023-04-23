@@ -44,6 +44,7 @@ namespace MobilePhoneDistributor_Web.Models
         public string PhoneNumber { get; set; }
 
     }
+    [NotMapped]
     public class LoginViewModel
     {
         [Required]
@@ -57,6 +58,7 @@ namespace MobilePhoneDistributor_Web.Models
         [Compare("Password")]
         public string Password { get; set; }
     }
+    [NotMapped]
     public class RegisterViewModel
     {
        

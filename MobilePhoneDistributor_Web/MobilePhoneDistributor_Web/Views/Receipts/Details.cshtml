@@ -6,7 +6,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Receipt</h4>
+    <h4>Receipt @Model.ReceiptId</h4>
     <hr />
     <dl class="dl-horizontal">
         
@@ -25,29 +25,35 @@
 
     </dl>
 </div>
+<p>
+    @Html.ActionLink("Append Details", "AppendDetail", new { id = Model.ReceiptId })
+</p>
 <div>
     <table class="table">
         <tr>
+          
             <th>
-                @Html.DisplayNameFor(model => model.ReceiptDetails.First().ReceiptId)
+                @Html.DisplayNameFor(model => model.ReceiptDetails.First().PhoneModelId)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.ReceiptDetails.First().Quantity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReceiptDetails.First().UnitAmmount)
             </th>
+
             <th></th>
         </tr>
 
         @foreach (var item in Model.ReceiptDetails)
         {
             <tr>
-                <th>
-                    @Html.DisplayFor(ModelItem =>item.ReceiptId)
-                </th>
                
+                <th>
+                    @Html.DisplayFor(ModelItem => item.PhoneModelId)
+                </th>
+
                 <th>
                     @Html.DisplayFor(ModelItem => item.Quantity)
                 </th>
@@ -55,9 +61,9 @@
                     @Html.DisplayFor(ModelItem => item.UnitAmmount)
                 </th>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ReceiptId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ReceiptId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ReceiptId })
+                    @Html.ActionLink("Edit", "Edit", "ReceiptDetails", new { id = item.ReceiptDetailId },null) |
+                    @Html.ActionLink("Details", "Details", "ReceiptDetails", new { id = item.ReceiptDetailId },null) |
+                    @Html.ActionLink("Delete", "Delete", "ReceiptDetails", new { id = item.ReceiptDetailId },null)
                 </td>
             </tr>
         }
