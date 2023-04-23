@@ -343,10 +343,10 @@
     <Content Include="Views\ReceiptDetails\Index.cshtml" />
     <Content Include="Views\PhoneModels\Create.cshtml" />
     <Content Include="Views\PhoneModels\Delete.cshtml" />
-    <Content Include="Views\PhoneModels\Details.cshtml" />
     <Content Include="Views\PhoneModels\Edit.cshtml" />
     <Content Include="Views\PhoneModels\Index.cshtml" />
     <Content Include="Views\ReceiptDetails\AppendDetail.cshtml" />
+    <Content Include="Views\PhoneModels\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

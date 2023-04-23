@@ -41,7 +41,7 @@ namespace MobilePhoneDistributor_Web.Controllers
         public ActionResult Create()
         {
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName");
-            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId");
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "ReceiptId");
             return View();
         }
 
@@ -61,40 +61,41 @@ namespace MobilePhoneDistributor_Web.Controllers
             }
 
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName", receiptDetail.PhoneModelId);
-            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "StaffId", receiptDetail.ReceiptId);
+            ViewBag.ReceiptId = new SelectList(db.Receipts, "ReceiptId", "ReceiptId", receiptDetail.ReceiptId);
             return View(receiptDetail);
         }
-        // GET: ReceiptDetails/Create
+        // GET: ReceiptDetails/AppendDetail
         public ActionResult AppendDetail(string id)
         {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var receipt = db.Receipts.Find(id);
+            ViewBag.Id = id;
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName");
-            return View(receipt);
+            return View();
         }
-
-        // POST: ReceiptDetails/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AppendDetail(string id,[Bind(Include = "Quantity,PhoneModelId,UnitAmmount")] ReceiptDetail receiptDetail)
+        public async Task<ActionResult> AppendDetail(string id,ReceiptDetailCreateViewModel model)
         {
-
+            var receiptDetail = new ReceiptDetail()
+            {
+                ReceiptId = id,
+                PhoneModelId = model.PhoneModelId,
+                Quantity = model.Quantity,
+                UnitAmmount = model.UnitAmmount,
+            };
             if (ModelState.IsValid)
             {
-                receiptDetail.ReceiptId = id;
                 db.ReceiptsDetail.Add(receiptDetail);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName", receiptDetail.PhoneModelId);
-            return View(receiptDetail);
+            ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName",receiptDetail.PhoneModelId);
+            return View();
         }
+
+        // POST: ReceiptDetails/AppendDetail
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
 
         // GET: ReceiptDetails/Edit/5
         public async Task<ActionResult> Edit(int? id)

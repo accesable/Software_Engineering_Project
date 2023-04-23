@@ -53,6 +53,7 @@ namespace MobilePhoneDistributor_Web.Models
     public class ReceiptDetailCreateViewModel
     {
         [Required]
+        [Display(Name = "Appended Phone Model")]
         public string PhoneModelId { get; set; }
         [Required]
         public int Quantity { get; set; }
