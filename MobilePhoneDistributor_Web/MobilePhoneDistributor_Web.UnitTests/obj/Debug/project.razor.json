@@ -1,0 +1,20 @@
+{
+  "SerializedFilePath": "c:\\Users\\PC\\Desktop\\Final_Project_SE\\Local Repo\\MobilePhoneDistributor_Web\\MobilePhoneDistributor_Web.UnitTests\\obj\\Debug\\project.razor.json",
+  "FilePath": "c:\\Users\\PC\\Desktop\\Final_Project_SE\\Local Repo\\MobilePhoneDistributor_Web\\MobilePhoneDistributor_Web.UnitTests\\MobilePhoneDistributor_Web.UnitTests.csproj",
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 703
+  },
+  "RootNamespace": null,
+  "Documents": [],
+  "SerializationFormat": "0.3"
+}

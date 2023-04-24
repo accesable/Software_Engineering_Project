@@ -5,35 +5,69 @@
 }
 
 <h2>Available Phone Models</h2>
+@if ((string)Session["role"] == "Staff")
+{
+    <p>
+        @Html.ActionLink("Create A New Phone Model", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneBrand)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create A New Phone Model", "Create",null,new {@class= "btn btn-primary" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneBrand)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneBrand)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PhoneId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PhoneId })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneBrand)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhoneId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhoneId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhoneId })
-        </td>
-    </tr>
+    </table>
 }
+else
+{
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneBrand)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneBrand)
+                </td>
+                <td>
+                    @Html.ActionLink("Add To Cart", "AddOrder", new { id = item.PhoneId }) 
+                   
+                </td>
+            </tr>
+        }
+
+    </table>
+}

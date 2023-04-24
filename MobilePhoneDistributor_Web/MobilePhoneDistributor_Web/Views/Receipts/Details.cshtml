@@ -9,7 +9,7 @@
     <h4>Receipt @Model.ReceiptId</h4>
     <hr />
     <dl class="dl-horizontal">
-        
+
 
         <dd>
             @Html.DisplayFor(model => model.Staff.StaffId)
@@ -28,49 +28,57 @@
 <p>
     @Html.ActionLink("Append Details", "AppendDetail", "ReceiptDetails", new { id = Model.ReceiptId }, null)
 </p>
-<div>
-    <table class="table">
-        <tr>
-          
-            <th>
-                @Html.DisplayNameFor(model => model.ReceiptDetails.First().PhoneModelId)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.ReceiptDetails.First().Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReceiptDetails.First().UnitAmmount)
-            </th>
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.ReceiptDetails)
-        {
+@if (Model.ReceiptDetails.Count() == 0)
+{
+    <p>No Details In This Receipt</p>
+}
+else
+{
+    <div>
+        <table class="table">
             <tr>
-               
+
                 <th>
-                    @Html.DisplayFor(ModelItem => item.PhoneModelId)
+                    @Html.DisplayNameFor(model => model.ReceiptDetails.First().PhoneModelId)
                 </th>
 
                 <th>
-                    @Html.DisplayFor(ModelItem => item.Quantity)
+                    @Html.DisplayNameFor(model => model.ReceiptDetails.First().Quantity)
                 </th>
                 <th>
-                    @Html.DisplayFor(ModelItem => item.UnitAmmount)
+                    @Html.DisplayNameFor(model => model.ReceiptDetails.First().UnitAmmount)
                 </th>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "ReceiptDetails", new { id = item.ReceiptDetailId },null) |
-                    @Html.ActionLink("Details", "Details", "ReceiptDetails", new { id = item.ReceiptDetailId },null) |
-                    @Html.ActionLink("Delete", "Delete", "ReceiptDetails", new { id = item.ReceiptDetailId },null)
-                </td>
+
+                <th></th>
             </tr>
-        }
 
-    </table>
-</div>
+            @foreach (var item in Model.ReceiptDetails)
+            {
+                <tr>
+
+                    <th>
+                        @Html.DisplayFor(ModelItem => item.PhoneModelId)
+                    </th>
+
+                    <th>
+                        @Html.DisplayFor(ModelItem => item.Quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(ModelItem => item.UnitAmmount)
+                    </th>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "ReceiptDetails", new { id = item.ReceiptDetailId }, null) |
+                        @Html.ActionLink("Details", "Details", "ReceiptDetails", new { id = item.ReceiptDetailId }, null) |
+                        @Html.ActionLink("Delete", "Delete", "ReceiptDetails", new { id = item.ReceiptDetailId }, null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ReceiptId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ReceiptId }) |*@
+    @Html.ActionLink("Back to Receipt List", "Index")
 </p>

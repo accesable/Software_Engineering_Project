@@ -12,8 +12,10 @@ namespace MobilePhoneDistributor_Web.Models
         [Key]
         public string ReceiptId { get; set; }
         [Required]
+        [Display(Name = "Created on")]
         public DateTime ReceiptDate { get; set; } = DateTime.Now;
         [Required]
+
         public string StaffId { get; set;}
 
         public Staff Staff { get; set;}
@@ -23,11 +25,12 @@ namespace MobilePhoneDistributor_Web.Models
     [NotMapped]
     public class ReceiptCreateViewModel
     {
-        [Required]
+/*        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMddyy}", ApplyFormatInEditMode = true)]
-        public DateTime ReceiptDate { get; set; } = DateTime.Now;
+        public DateTime ReceiptDate { get; set; } = DateTime.Now;*/
         [Required]
+        [Display(Name ="Staff ID")]
         public string StaffId { get; set; }
     }
     public class ReceiptDetail
@@ -44,9 +47,8 @@ namespace MobilePhoneDistributor_Web.Models
         [ForeignKey("PhoneModel")]
         public string PhoneModelId { get; set; }
         public PhoneModel PhoneModel { get; set; }
-        [StringLength(50)]
         [Required]
-        public string UnitAmmount { set; get; }
+        public double UnitAmmount { set; get; }
 
     }
     [NotMapped]
@@ -58,7 +60,6 @@ namespace MobilePhoneDistributor_Web.Models
         [Required]
         public int Quantity { get; set; }
         [Required]
-        [StringLength(50)]
-        public string UnitAmmount { get; set; }
+        public double UnitAmmount { get; set; }
     }
 }

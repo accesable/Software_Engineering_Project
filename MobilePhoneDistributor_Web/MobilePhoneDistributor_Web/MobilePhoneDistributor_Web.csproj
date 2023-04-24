@@ -250,7 +250,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\PasswordHasher.cs" />
+    <Compile Include="Controllers\AgentsController.cs" />
+    <Compile Include="Controllers\General.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhoneModelsController.cs" />
     <Compile Include="Controllers\ReceiptDetailsController.cs" />
@@ -263,11 +264,30 @@
     <Compile Include="Migrations\202304230844277_ThirdReCreateDatabase.designer.cs">
       <DependentUpon>202304230844277_ThirdReCreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304240431460_AddAgent.cs" />
+    <Compile Include="Migrations\202304240431460_AddAgent.designer.cs">
+      <DependentUpon>202304240431460_AddAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304240451312_AddOrder.cs" />
+    <Compile Include="Migrations\202304240451312_AddOrder.designer.cs">
+      <DependentUpon>202304240451312_AddOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304240710153_AddStatus.cs" />
+    <Compile Include="Migrations\202304240710153_AddStatus.designer.cs">
+      <DependentUpon>202304240710153_AddStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304240845146_AddDeleveryNote.cs" />
+    <Compile Include="Migrations\202304240845146_AddDeleveryNote.designer.cs">
+      <DependentUpon>202304240845146_AddDeleveryNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\PhoneModel.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,10 +341,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Staffs\Delete.cshtml" />
-    <Content Include="Views\Staffs\Details.cshtml" />
-    <Content Include="Views\Staffs\Edit.cshtml" />
-    <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\Staffs\Message.cshtml" />
     <Content Include="Views\Staffs\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -338,15 +354,19 @@
     <Content Include="Views\Receipts\AppendDetail.cshtml" />
     <Content Include="Views\ReceiptDetails\Create.cshtml" />
     <Content Include="Views\ReceiptDetails\Delete.cshtml" />
-    <Content Include="Views\ReceiptDetails\Details.cshtml" />
     <Content Include="Views\ReceiptDetails\Edit.cshtml" />
-    <Content Include="Views\ReceiptDetails\Index.cshtml" />
     <Content Include="Views\PhoneModels\Create.cshtml" />
     <Content Include="Views\PhoneModels\Delete.cshtml" />
     <Content Include="Views\PhoneModels\Edit.cshtml" />
     <Content Include="Views\PhoneModels\Index.cshtml" />
     <Content Include="Views\ReceiptDetails\AppendDetail.cshtml" />
-    <Content Include="Views\PhoneModels\Details.cshtml" />
+    <Content Include="Views\Staffs\DeniedAccess.cshtml" />
+    <Content Include="Views\Agents\Create.cshtml" />
+    <Content Include="Views\Agents\Delete.cshtml" />
+    <Content Include="Views\Agents\Details.cshtml" />
+    <Content Include="Views\Agents\Edit.cshtml" />
+    <Content Include="Views\Agents\Index.cshtml" />
+    <Content Include="Views\Agents\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +402,18 @@
     <EmbeddedResource Include="Migrations\202304230844277_ThirdReCreateDatabase.resx">
       <DependentUpon>202304230844277_ThirdReCreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304240431460_AddAgent.resx">
+      <DependentUpon>202304240431460_AddAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304240451312_AddOrder.resx">
+      <DependentUpon>202304240451312_AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304240710153_AddStatus.resx">
+      <DependentUpon>202304240710153_AddStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304240845146_AddDeleveryNote.resx">
+      <DependentUpon>202304240845146_AddDeleveryNote.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -401,7 +433,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44389/</IISUrl>
+          <IISUrl>https://localhost:44389/dev.main.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

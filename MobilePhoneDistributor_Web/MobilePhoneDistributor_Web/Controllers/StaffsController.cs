@@ -15,12 +15,6 @@ namespace MobilePhoneDistributor_Web.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: Staffs
-        public ActionResult Index()
-        {
-            if (Session["user"]==null) return RedirectToAction("Message");
-            return View(db.Staffs.ToList());
-        }
 
         // GET: Staffs
         public ActionResult Message()
@@ -43,6 +37,7 @@ namespace MobilePhoneDistributor_Web.Controllers
                 {
                     Session["user"] = staff.StaffId;
                     Session["user_fullname"] = staff.FirstName+" "+staff.LastName;
+                    Session["role"] = "Staff";
                     return RedirectToAction("Message");
                 }
                 return RedirectToAction("Index", "Home");
@@ -55,20 +50,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             return View();
         }
 
-        // GET: Staffs/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staffs.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
+        
 
         // GET: Staffs/Create
         public ActionResult Register()
@@ -107,63 +89,12 @@ namespace MobilePhoneDistributor_Web.Controllers
             return View(model);
         }
 
-        // GET: Staffs/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staffs.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
-
-        // POST: Staffs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FirstName,LastName,Username,Email,PhoneNumber")] Staff staff)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(staff).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(staff);
-        }
-
-        // GET: Staffs/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staffs.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
-
-        // POST: Staffs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Staff staff = db.Staffs.Find(id);
-            db.Staffs.Remove(staff);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
         
+        
+        public ActionResult DeniedAccess()
+        {
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

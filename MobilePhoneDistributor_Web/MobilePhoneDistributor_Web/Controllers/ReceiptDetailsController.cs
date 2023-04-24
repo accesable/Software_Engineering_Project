@@ -15,27 +15,9 @@ namespace MobilePhoneDistributor_Web.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: ReceiptDetails
-        public async Task<ActionResult> Index()
-        {
-            var receiptsDetail = db.ReceiptsDetail.Include(r => r.PhoneModel).Include(r => r.Receipt);
-            return View(await receiptsDetail.ToListAsync());
-        }
+       
 
-        // GET: ReceiptDetails/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ReceiptDetail receiptDetail = await db.ReceiptsDetail.FindAsync(id);
-            if (receiptDetail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(receiptDetail);
-        }
+       
 
         // GET: ReceiptDetails/Create
         public ActionResult Create()
@@ -86,7 +68,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             {
                 db.ReceiptsDetail.Add(receiptDetail);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","Receipts",new { id });
             }
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName",receiptDetail.PhoneModelId);
             return View();

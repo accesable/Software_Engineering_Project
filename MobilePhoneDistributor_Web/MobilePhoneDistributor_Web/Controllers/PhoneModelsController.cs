@@ -21,20 +21,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             return View(await db.PhoneModels.ToListAsync());
         }
 
-        // GET: PhoneModels/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhoneModel phoneModel = await db.PhoneModels.FindAsync(id);
-            if (phoneModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(phoneModel);
-        }
+        
 
         // GET: PhoneModels/Create
         public ActionResult Create()
@@ -47,10 +34,16 @@ namespace MobilePhoneDistributor_Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PhoneId,PhoneName,PhoneBrand")] PhoneModel phoneModel)
+        public async Task<ActionResult> Create([Bind(Include = "PhoneName,PhoneBrand")] PhoneModel phoneModel)
         {
+            if (Session["role"] == null || (string)Session["role"] != "Staff")
+            {
+                return RedirectToAction("Login", "Staffs");
+            }
             if (ModelState.IsValid)
             {
+                string IdLastestModel = (from i in db.PhoneModels orderby i.PhoneId descending select i)?.FirstOrDefault().PhoneId;
+                phoneModel.PhoneId=General.GeneratePhoneModelID(IdLastestModel);
                 db.PhoneModels.Add(phoneModel);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
