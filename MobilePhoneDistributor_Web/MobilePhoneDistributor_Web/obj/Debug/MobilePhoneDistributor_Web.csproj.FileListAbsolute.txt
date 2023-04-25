@@ -159,3 +159,9 @@ C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Mobil
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AddOrder.resources
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AddStatus.resources
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\obj\Debug\MobilePhoneDistributor_Web.Migrations.AddDeleveryNote.resources
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Net.Http.Formatting.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Web.Http.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Web.Http.WebHost.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Net.Http.Formatting.xml
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Web.Http.xml
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web\bin\System.Web.Http.WebHost.xml

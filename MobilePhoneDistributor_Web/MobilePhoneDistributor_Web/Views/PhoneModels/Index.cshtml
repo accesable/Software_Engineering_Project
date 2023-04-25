@@ -41,7 +41,7 @@
 }
 else
 {
-   
+
     <table class="table">
         <tr>
             <th>
@@ -63,11 +63,9 @@ else
                     @Html.DisplayFor(modelItem => item.PhoneBrand)
                 </td>
                 <td>
-                    @Html.ActionLink("Add To Cart", "AddOrder", new { id = item.PhoneId }) 
-                   
+                    @Html.ActionLink("Add To Cart", "AddItem", "OrderCart", new { id=item.PhoneId }, null)
                 </td>
             </tr>
         }
-
     </table>
 }

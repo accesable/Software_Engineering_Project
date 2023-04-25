@@ -174,5 +174,46 @@ namespace MobilePhoneDistributor_Web.Controllers
             }
             return null;
         }
+        public static string GenerateOrdertId(Order lastestOrder)
+        {
+            string reVal = "";
+            if (lastestOrder == null)
+            {
+                string Order = "O000";
+
+                reVal += DateTime.Now.Date.ToString("MMddyy");
+                reVal += Order;
+                return reVal;
+            }
+            DateTime lastest = lastestOrder.OrderDate;
+            string ID = lastestOrder.OrderId;
+            if (lastest.Date < DateTime.Now.Date)
+            {
+                string Order = "O000";
+
+                reVal += DateTime.Now.Date.ToString("MMddyy");
+                reVal += Order;
+                return reVal;
+
+            }
+            else if (lastest.Date == DateTime.Now.Date)
+            {
+                int order = Convert.ToInt32(ID.Substring(7, ID.Length - 7));
+                order += 1;
+                if (order < 10)
+                {
+                    return String.Format("{0}O{1}", DateTime.Now.Date.ToString("MMddyy"), "00" + order);
+                }
+                else if (order < 100)
+                {
+                    return String.Format("{0}O{1}", DateTime.Now.Date.ToString("MMddyy"), "0" + order);
+                }
+                else
+                {
+                    return String.Format("{0}O{1}", DateTime.Now.Date.ToString("MMddyy"), order);
+                }
+            }
+            return null;
+        }
     }
 }

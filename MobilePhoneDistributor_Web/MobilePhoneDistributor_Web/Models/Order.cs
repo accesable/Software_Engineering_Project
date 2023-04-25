@@ -12,7 +12,7 @@ namespace MobilePhoneDistributor_Web.Models
     {
         [Key]
         public string OrderId { get; set; }
-        [Required]
+
         [Display(Name = "Ordered on")]
         public DateTime OrderDate { get; set; } = DateTime.Now;
         [Required]
@@ -22,7 +22,7 @@ namespace MobilePhoneDistributor_Web.Models
         public Agent Agent { get; set; }
 
         public int StatusId { get; set; }
-        [Required]
+
         [ForeignKey("StatusId")]
         public OrderStatus Status { get; set; }
 
@@ -74,9 +74,6 @@ namespace MobilePhoneDistributor_Web.Models
     [NotMapped]
     public class OrderDetailCreateViewModel
     {
-        [Required]
-        [Display(Name = "Appended Phone Model")]
-        public string PhoneModelId { get; set; }
         [Required]
         public int Quantity { get; set; }
 

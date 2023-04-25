@@ -32,3 +32,7 @@ C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\obj\Debug\Test.csproj.CopyComplete
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\obj\Debug\Test.exe
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\obj\Debug\Test.pdb
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\bin\Debug\System.Web.Http.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\bin\Debug\System.Web.Http.xml
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Test\bin\Debug\System.Net.Http.Formatting.xml

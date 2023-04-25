@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MobilePhoneDistributor_Web.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Order List";
+}
+
+<h2>Order List</h2>
+
+<p>
+    @Html.ActionLink("Order More", "Index", "PhoneModels", null, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneModelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneModelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "RemoveItem", new { id = item.PhoneModelId })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+@Html.ActionLink("Back to Phone Model", "Index", "PhoneModels", null, null)
+</div>

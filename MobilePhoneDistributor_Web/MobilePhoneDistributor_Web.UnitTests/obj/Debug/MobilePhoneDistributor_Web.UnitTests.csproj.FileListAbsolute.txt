@@ -38,3 +38,7 @@ C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\Mobil
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\obj\Debug\MobilePhoneDistributor_Web.UnitTests.csproj.CopyComplete
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\obj\Debug\MobilePhoneDistributor_Web.UnitTests.dll
 C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\obj\Debug\MobilePhoneDistributor_Web.UnitTests.pdb
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\bin\Debug\System.Web.Http.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\bin\Debug\System.Web.Http.xml
+C:\Users\PC\Desktop\Final_Project_SE\Local Repo\MobilePhoneDistributor_Web\MobilePhoneDistributor_Web.UnitTests\bin\Debug\System.Net.Http.Formatting.xml

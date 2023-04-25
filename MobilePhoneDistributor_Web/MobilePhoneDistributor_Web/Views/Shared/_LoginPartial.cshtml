@@ -1,18 +1,21 @@
 ﻿
-@if (Session["user"]!=null)
+@if (Session["user"] != null)
 {
 
-        <ul class="navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + Session["user_fullname"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
-            </li>
-            <li>@Html.ActionLink("Log Out","Logout","Staffs",routeValues:null,htmlAttributes: new {@class="nav-link"})</li>
-        </ul>
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Order Cart", "Index", "OrderCart", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li>
+            @Html.ActionLink("Hello " + Session["user_fullname"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+        </li>
+        <li>@Html.ActionLink("Log Out", "Logout", "Staffs", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    </ul>
 }
 else
 {
-    <ul class="navbar-nav navbar-right">    
-        <li>@Html.ActionLink("Register", "Register", "Staffs", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
-        <li>@Html.ActionLink("Login", "Login", "Staffs", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-    </ul>
+    
+<ul class="navbar-nav navbar-right">
+    <li>@Html.ActionLink("Order Cart", "Index", "OrderCart", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Register", "Register", "Staffs", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Login", "Login", "Staffs", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+</ul>
 }

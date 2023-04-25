@@ -35,9 +35,9 @@ namespace MobilePhoneDistributor_Web.Controllers
                 if(staff==null) return RedirectToAction("Index", "Home");
                 if (PasswordHasher.ValidatePassword(loginViewModel.Password, staff.Password, staff.PasswordSalt))
                 {
-                    Session["user"] = staff.StaffId;
-                    Session["user_fullname"] = staff.FirstName+" "+staff.LastName;
-                    Session["role"] = "Staff";
+                    Session["user"] = staff.StaffId as string;
+                    Session["user_fullname"] = staff.FirstName + " " + staff.LastName as string;
+                    Session["role"] = "Staff" as string;
                     return RedirectToAction("Message");
                 }
                 return RedirectToAction("Index", "Home");

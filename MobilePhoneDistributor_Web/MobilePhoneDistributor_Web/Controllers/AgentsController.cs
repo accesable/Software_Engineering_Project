@@ -50,9 +50,9 @@ namespace MobilePhoneDistributor_Web.Controllers
                 if (agent == null) return RedirectToAction("Index", "Home");
                 if (PasswordHasher.ValidatePassword(loginViewModel.Password, agent.Password, agent.PasswordSalt))
                 {
-                    Session["user"] = agent.AgentId;
-                    Session["user_fullname"] = agent.FirstName + " " + agent.LastName;
-                    Session["role"] = "Agent";
+                    Session["user"] = agent.AgentId as string;
+                    Session["user_fullname"] = agent.FirstName + " " + agent.LastName as string;
+                    Session["role"] = "Agent" as string;
                     return RedirectToAction("Message");
                 }
                 return RedirectToAction("Index", "Home");
@@ -80,7 +80,7 @@ namespace MobilePhoneDistributor_Web.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    AgentId = General.GenerateStaffID(LastAgent),
+                    AgentId = General.GenerateAgentID(LastAgent),
                     Password = StoredPassword[0],
                     PasswordSalt = StoredPassword[1],
                     Email = model.Email,
