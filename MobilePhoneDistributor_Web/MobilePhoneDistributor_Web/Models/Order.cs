@@ -35,6 +35,7 @@ namespace MobilePhoneDistributor_Web.Models
         [Required]
         [StringLength(250)]
         public string DeliveryStatus{ get; set; }
+
         [Required]
         [StringLength(50)]
         public string PaymentStatus { get; set; }

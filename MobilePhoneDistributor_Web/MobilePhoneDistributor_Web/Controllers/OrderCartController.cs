@@ -9,7 +9,7 @@ namespace MobilePhoneDistributor_Web.Controllers
 {
     public class OrderCartController : Controller
     {
-        
+        private ModelDbContext db= new ModelDbContext();
         public ActionResult Index()
         {
             var cart = Session["cart"] as Cart;
@@ -36,8 +36,8 @@ namespace MobilePhoneDistributor_Web.Controllers
                 cart = new Cart();
                 Session["cart"] = cart;
             }
-
-            cart.AddItem(new OrderDetail { PhoneModelId = id as string ,Quantity=model.Quantity});
+            var Item = db.PhoneModels.Find(id);
+            cart.AddItem(new OrderDetail { PhoneModelId = id as string ,Quantity=model.Quantity ,PhoneModel=Item});
 
             return RedirectToAction("Index");
         }

@@ -53,7 +53,7 @@ namespace MobilePhoneDistributor_Web.Controllers
                     Session["user"] = agent.AgentId as string;
                     Session["user_fullname"] = agent.FirstName + " " + agent.LastName as string;
                     Session["role"] = "Agent" as string;
-                    return RedirectToAction("Message");
+                    return RedirectToAction("Message","Staffs",null);
                 }
                 return RedirectToAction("Index", "Home");
             }

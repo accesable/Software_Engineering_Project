@@ -17,18 +17,9 @@ namespace MobilePhoneDistributor_Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "PhoneModels", action = "Index", id = UrlParameter.Optional }
             );
             
-        }
-        public static void Register(HttpConfiguration config)
-        {
-            config.MapHttpAttributeRoutes();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
 
     }

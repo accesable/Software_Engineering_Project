@@ -7,6 +7,7 @@ namespace MobilePhoneDistributor_Web.Models
 {
     public class Cart
     {
+        private ModelDbContext db = new ModelDbContext();
         private List<OrderDetail> items = new List<OrderDetail>();
 
         public void AddItem(OrderDetail item)
@@ -26,7 +27,7 @@ namespace MobilePhoneDistributor_Web.Models
         public void RemoveItem(string id)
         {
             var itemToRemove = items.FirstOrDefault(i => i.PhoneModelId == id);
-
+          
             if (itemToRemove != null)
             {
                 items.Remove(itemToRemove);

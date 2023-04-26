@@ -12,7 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneModelId)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneModelId )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneModel.PhoneName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Quantity)
@@ -27,6 +30,9 @@
                 @Html.DisplayFor(modelItem => item.PhoneModelId)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PhoneModel.PhoneName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
@@ -37,5 +43,6 @@
 
 </table>
 <div>
-@Html.ActionLink("Back to Phone Model", "Index", "PhoneModels", null, null)
+    @Html.ActionLink("Back to Phone Model", "Index", "PhoneModels", null, null)|
+    @Html.ActionLink("Orders", "Create","Orders", null, new { @class = "btn btn-primary " })
 </div>

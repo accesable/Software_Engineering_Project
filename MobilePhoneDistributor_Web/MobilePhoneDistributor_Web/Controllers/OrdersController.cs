@@ -40,9 +40,28 @@ namespace MobilePhoneDistributor_Web.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "AgentId");
+            
+            Order order = new Order();
+            order.Status = new OrderStatus() { DeliveryStatus = "On Processing", PaymentMethod = "COD", PaymentStatus = "Not Pay" };
+            db.OrdersStatus.Add(order.Status);
+            order.OrderDate = DateTime.Now;
+            order.AgentId = Session["user"] as string;
+            Order lastestOrder = db.Orders.OrderByDescending(s => s.OrderId)?.FirstOrDefault();
+            string id = General.GenerateOrdertId(lastestOrder);
+            order.OrderId = id;
+            db.Orders.Add(order);
+     
+            var cart = Session["cart"] as Cart;
+            foreach (var item in cart.GetItems())
+            {
+                item.OrderId = id;
+                db.OrdersDetail.Add(item);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            //ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "AgentId");
             //ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus");
-            return View();
+            //return View();
         }
 
         // POST: Orders/Create
@@ -55,7 +74,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             if (ModelState.IsValid)
             {
                 order.OrderDate = DateTime.Now;
-                order.AgentId=order.AgentId;
+                order.AgentId=Session["user"] as string;
                 Order lastestOrder= db.Orders.OrderByDescending(s => s.OrderId)?.FirstOrDefault(); 
                 order.OrderId = General.GenerateOrdertId(lastestOrder);
                 db.Orders.Add(order);
@@ -63,7 +82,8 @@ namespace MobilePhoneDistributor_Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "FirstName", order.AgentId);
+
+            ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "FirstName"+"LastName", order.AgentId);
             //ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus", order.StatusId);
             return View(order);
         }

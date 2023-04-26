@@ -45,7 +45,9 @@ namespace MobilePhoneDistributor_Web.Models
         public int Quantity { get; set; }
         [Required]
         [ForeignKey("PhoneModel")]
+        [Display(Name ="Phone Model ID")]
         public string PhoneModelId { get; set; }
+        [Display(Name ="Phone Model")]
         public PhoneModel PhoneModel { get; set; }
         [Required]
         public double UnitAmmount { set; get; }
