@@ -42,7 +42,16 @@ namespace MobilePhoneDistributor_Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                string IdLastestModel = (from i in db.PhoneModels orderby i.PhoneId descending select i)?.FirstOrDefault().PhoneId;
+                string IdLastestModel;
+                if ((from i in db.PhoneModels orderby i.PhoneId descending select i)?.FirstOrDefault() == null)
+                {
+                    IdLastestModel = null;
+                }
+                else
+                {
+                    IdLastestModel = (from i in db.PhoneModels orderby i.PhoneId descending select i)?.FirstOrDefault().PhoneId;
+                }
+                 
                 phoneModel.PhoneId=General.GeneratePhoneModelID(IdLastestModel);
                 db.PhoneModels.Add(phoneModel);
                 await db.SaveChangesAsync();

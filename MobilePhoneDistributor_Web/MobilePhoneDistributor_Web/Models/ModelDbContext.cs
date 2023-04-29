@@ -19,7 +19,6 @@ namespace MobilePhoneDistributor_Web.Models
 
         public virtual DbSet<Order> Orders { get; set;}
         public virtual DbSet<OrderDetail> OrdersDetail { get; set;}
-        public virtual DbSet<OrderStatus> OrdersStatus { get; set;}
         public virtual DbSet<DeliveryNote> DeliveryNotes { get; set;}
     }
 }

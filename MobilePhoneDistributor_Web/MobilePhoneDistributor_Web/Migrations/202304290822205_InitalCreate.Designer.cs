@@ -7,13 +7,13 @@ namespace MobilePhoneDistributor_Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ThirdReCreateDatabase : IMigrationMetadata
+    public sealed partial class InitalCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ThirdReCreateDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitalCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202304230844277_ThirdReCreateDatabase"; }
+            get { return "202304290822205_InitalCreate"; }
         }
         
         string IMigrationMetadata.Source

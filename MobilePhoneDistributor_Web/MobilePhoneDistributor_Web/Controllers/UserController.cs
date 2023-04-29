@@ -6,11 +6,14 @@ using System.Web.Mvc;
 
 namespace MobilePhoneDistributor_Web.Controllers
 {
-    public class LoginController : Controller
+    public class UserController : Controller
     {
         // GET: Login
         public ActionResult Index()
         {
+            return View();
+        }
+        public ActionResult Register() {
             return View();
         }
         

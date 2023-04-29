@@ -38,11 +38,14 @@ namespace MobilePhoneDistributor_Web.Controllers
                     Session["user"] = staff.StaffId as string;
                     Session["user_fullname"] = staff.FirstName + " " + staff.LastName as string;
                     Session["role"] = "Staff" as string;
+                    ViewBag.Message = "Login Successfully";
                     return RedirectToAction("Message");
                 }
-                return RedirectToAction("Index", "Home");
+                ViewBag.Message = "Invalid Password";
+                return RedirectToAction("Message");
             }
-            return RedirectToAction("Index", "Home");
+            ViewBag.Message = "Please Correct The Login Form";
+            return RedirectToAction("Message");
         }
         public ActionResult Logout()
         {
@@ -83,7 +86,8 @@ namespace MobilePhoneDistributor_Web.Controllers
                 
                 db.Staffs.Add(AddedStaff);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Message = "Register Successfully, Please Login Your Account";
+                return RedirectToAction("Message","Staffs",null);
             }
 
             return View(model);

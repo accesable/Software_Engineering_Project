@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MobilePhoneDistributor_Web.Models;
+using Microsoft.Extensions.Options;
 
 namespace MobilePhoneDistributor_Web.Controllers
 {
@@ -16,10 +17,14 @@ namespace MobilePhoneDistributor_Web.Controllers
         private ModelDbContext db = new ModelDbContext();
 
         // GET: Orders
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Agent).Include(o => o.Status);
-            return View(await orders.ToListAsync());
+            if (Session["user"]==null || Session["role"] as string != "Agent")
+            {
+                return RedirectToAction("Login", "Agents", null);
+            }
+            string id = Session["user"] as string;
+            return View(db.Orders.ToList().Where(i=>i.AgentId==id));
         }
 
         // GET: Orders/Details/5
@@ -40,28 +45,14 @@ namespace MobilePhoneDistributor_Web.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            
-            Order order = new Order();
-            order.Status = new OrderStatus() { DeliveryStatus = "On Processing", PaymentMethod = "COD", PaymentStatus = "Not Pay" };
-            db.OrdersStatus.Add(order.Status);
-            order.OrderDate = DateTime.Now;
-            order.AgentId = Session["user"] as string;
-            Order lastestOrder = db.Orders.OrderByDescending(s => s.OrderId)?.FirstOrDefault();
-            string id = General.GenerateOrdertId(lastestOrder);
-            order.OrderId = id;
-            db.Orders.Add(order);
-     
-            var cart = Session["cart"] as Cart;
-            foreach (var item in cart.GetItems())
+            var options = new List<SelectListItem>
             {
-                item.OrderId = id;
-                db.OrdersDetail.Add(item);
-            }
-            db.SaveChanges();
-            return RedirectToAction("Index");
-            //ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "AgentId");
-            //ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus");
-            //return View();
+                new SelectListItem { Value = "COD", Text = "Cash On Delivery" },
+                new SelectListItem { Value = "VNPAY", Text = "VnPay" },
+           
+            };
+            ViewBag.Options = new SelectList(options,"Value","Text","COD");
+            return View();
         }
 
         // POST: Orders/Create
@@ -69,22 +60,56 @@ namespace MobilePhoneDistributor_Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AgentId")] Order order)
+        public async Task<ActionResult> Create([Bind(Include = "PaymentMethod")] Order order)
         {
-            if (ModelState.IsValid)
+            
+            Order IdLastest;
+            if ((from i in db.Orders orderby i.OrderId descending select i)?.FirstOrDefault() == null)
             {
-                order.OrderDate = DateTime.Now;
-                order.AgentId=Session["user"] as string;
-                Order lastestOrder= db.Orders.OrderByDescending(s => s.OrderId)?.FirstOrDefault(); 
-                order.OrderId = General.GenerateOrdertId(lastestOrder);
+                IdLastest = null;
+            }
+            else
+            {
+                IdLastest = (from i in db.Orders orderby i.OrderId descending select i)?.FirstOrDefault();
+            }
+            string id = General.GenerateOrdertId(IdLastest);
+            order.OrderId = id;
+            order.OrderDate = DateTime.Now;
+            order.AgentId = Session["user"] as string;
+            order.OrderStatus = "On Processing";
+            order.PaymentStatus = "Not Payed";
+            var cart = Session["cart"] as Cart;
+            if (order.PaymentMethod != null)
+            {
                 db.Orders.Add(order);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
             }
+            else
+            {
+                return View();
+            }
+            foreach ( var item in cart.GetItems())
+            {
+                var detail = new OrderDetail
+                {
+                    OrderId = id,
+                    PhoneModelId = item.PhoneModelId,
+                    Quantity = item.Quantity,
+                };
+                db.OrdersDetail.Add(detail);
+                db.SaveChanges();
+            }
+            Session["cart"] = null;
+            return RedirectToAction("Index");
 
 
-            ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "FirstName"+"LastName", order.AgentId);
-            //ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus", order.StatusId);
+            var options = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "COD", Text = "Cash On Delivery" },
+                new SelectListItem { Value = "VNPAY", Text = "VnPay" },
+
+            };
+            ViewBag.Options = new SelectList(options, "Value", "Text", "COD");
             return View(order);
         }
 
@@ -101,7 +126,6 @@ namespace MobilePhoneDistributor_Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "FirstName", order.AgentId);
-            ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus", order.StatusId);
             return View(order);
         }
 
@@ -110,7 +134,7 @@ namespace MobilePhoneDistributor_Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "OrderId,OrderDate,AgentId,StatusId")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "OrderId,OrderDate,OrderStatus,PaymentMethod,PaymentStatus,AgentId")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +143,6 @@ namespace MobilePhoneDistributor_Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AgentId = new SelectList(db.Agents, "AgentId", "FirstName", order.AgentId);
-            ViewBag.StatusId = new SelectList(db.OrdersStatus, "StatusId", "DeliveryStatus", order.StatusId);
             return View(order);
         }
 

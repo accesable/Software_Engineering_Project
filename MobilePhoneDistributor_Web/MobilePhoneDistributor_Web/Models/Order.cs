@@ -16,33 +16,21 @@ namespace MobilePhoneDistributor_Web.Models
         [Display(Name = "Ordered on")]
         public DateTime OrderDate { get; set; } = DateTime.Now;
         [Required]
-        [ForeignKey("Agent")]
-        public string AgentId { get; set; }
-
-        public Agent Agent { get; set; }
-
-        public int StatusId { get; set; }
-
-        [ForeignKey("StatusId")]
-        public OrderStatus Status { get; set; }
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-    }
-    public class OrderStatus
-    {
-        [Key]
-        public int StatusId { get; set; }
+        [StringLength(250)]
+        public string OrderStatus { get; set; }
         [Required]
         [StringLength(250)]
-        public string DeliveryStatus{ get; set; }
-
+        public string PaymentMethod { get; set; }
         [Required]
-        [StringLength(50)]
+        [StringLength(250)]
         public string PaymentStatus { get; set; }
         [Required]
-        [StringLength(50)]
-        public string PaymentMethod { get; set; }
+        [ForeignKey("Agent")]
+        public string AgentId { get; set; }
+        public Agent Agent { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
+    
     public class DeliveryNote
     {
         [Key]
@@ -54,7 +42,7 @@ namespace MobilePhoneDistributor_Web.Models
         [Display(Name ="Order ID")]
         [ForeignKey("Order")]
         public string OrderId { get; set; }
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
 
     }
     public class OrderDetail
@@ -72,6 +60,7 @@ namespace MobilePhoneDistributor_Web.Models
         public string PhoneModelId { get; set; }
         public PhoneModel PhoneModel { get; set; }
     }
+    
     [NotMapped]
     public class OrderDetailCreateViewModel
     {

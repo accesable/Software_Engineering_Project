@@ -40,7 +40,7 @@ namespace MobilePhoneDistributor_Web.Controllers
         // GET: OrderDetails/Create
         public ActionResult Create()
         {
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "AgentId");
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName");
             return View();
         }
@@ -59,7 +59,7 @@ namespace MobilePhoneDistributor_Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "AgentId", orderDetail.OrderId);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", orderDetail.OrderId);
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName", orderDetail.PhoneModelId);
             return View(orderDetail);
         }
@@ -76,7 +76,7 @@ namespace MobilePhoneDistributor_Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "AgentId", orderDetail.OrderId);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderStatus", orderDetail.OrderId);
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName", orderDetail.PhoneModelId);
             return View(orderDetail);
         }
@@ -94,7 +94,7 @@ namespace MobilePhoneDistributor_Web.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "AgentId", orderDetail.OrderId);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderStatus", orderDetail.OrderId);
             ViewBag.PhoneModelId = new SelectList(db.PhoneModels, "PhoneId", "PhoneName", orderDetail.PhoneModelId);
             return View(orderDetail);
         }
